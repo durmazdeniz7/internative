@@ -34,7 +34,7 @@ class BlogDao {
 
   Future<void> getDATA() async {
     var url = Uri.parse("http://test020.internative.net/Blog/GetBlogs");
-    String token =TokenHelper.token!;
+    String token =await TokenHelper.getToken();
     
         
     final response = await http.get(url, headers: {
@@ -47,7 +47,7 @@ class BlogDao {
   }
   Future<List<Blog>> getBlogWithCagetoyId(String categoryId) async {
     var url = Uri.parse("http://test020.internative.net/Blog/GetBlogs");
-        String token =TokenHelper.token!;
+        String token =await TokenHelper.getToken();
 
    var data={
 "CategoryId":categoryId

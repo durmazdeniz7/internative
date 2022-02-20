@@ -12,7 +12,7 @@ class CategoryDao {
 
   Future<List<Category>> getCategory() async {
     var url = Uri.parse("http://test020.internative.net/Blog/GetCategories");
-    String token =TokenHelper.token!;
+    String token = await TokenHelper.getToken();
        
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json',

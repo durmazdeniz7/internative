@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inter_native/core/token_helper.dart';
 import 'package:inter_native/entities/sign_in_response.dart';
 import 'package:inter_native/repo/sign_in_dao.dart';
 import 'package:inter_native/views/page_state.dart';
@@ -15,11 +16,22 @@ class _LoginPageState extends State<LoginPage> {
   var mailController = TextEditingController();
   var passwordController = TextEditingController();
   bool _obscureText = true;
-  SignInDao signInDao=SignInDao();
- 
+  SignInDao signInDao = SignInDao();
 
+  // Future<String> getTokenFromHelper() async {
+  //   return await TokenHelper.getToken();
+  // }
+
+@override
+  void initState() {
+    super.initState();
+   // getTokenFromHelper();
+  }
   @override
   Widget build(BuildContext context) {
+    // if (getTokenFromHelper()!="") {
+      
+    // }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -36,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               width: MediaQuery.of(context).size.width / 3,
               height: MediaQuery.of(context).size.height / 4,
-            color: Colors.blue,
+              color: Colors.blue,
             ),
             Padding(
                 padding: const EdgeInsets.all(8),
@@ -66,23 +78,26 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(18))),
                 )),
             GestureDetector(
-              onTap: ()async{
-                SignInResponse signInResponse=await signInDao.signUp(mailController.text, passwordController.text);
-                if (signInResponse.hasError) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(signInResponse.message)));
-                  
-                }
-                else{
-Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const PageState()));                        }
-                  
-                
-              },
-              child: myButtons(Colors.grey.shade900, "Login", true)),
+                onTap: () async {
+                  SignInResponse signInResponse = await signInDao.signUp(
+                      mailController.text, passwordController.text);
+                  if (signInResponse.hasError) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(signInResponse.message)));
+                  } else {
+                      await TokenHelper.addToken(
+                        signInResponse.signIn?.token ?? "");
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const PageState()));
+                  }
+                },
+                child: myButtons(Colors.grey.shade900, "Login", true)),
             GestureDetector(
-              onTap: (){
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const RegsiterPage()));
-              },
-              child: myButtons(Colors.white, "Register", false)),
+                onTap: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const RegsiterPage()));
+                },
+                child: myButtons(Colors.white, "Register", false)),
           ],
         ),
       ),

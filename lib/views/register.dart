@@ -96,7 +96,6 @@ class _RegsiterPageState extends State<RegsiterPage> {
                   } else {
                     await TokenHelper.addToken(
                         signUpResponse.signup?.token ?? "");
-                        print(TokenHelper.token);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const PageState()));
                   }

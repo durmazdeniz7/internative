@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:inter_native/core/token_helper.dart';
 import 'package:inter_native/views/favorite_page.dart';
 import 'package:inter_native/views/home_page.dart';
+import 'package:inter_native/views/login_page.dart';
+import 'package:inter_native/views/profile_page.dart';
 
 class PageState extends StatefulWidget {
   const PageState({Key? key}) : super(key: key);
@@ -13,14 +16,20 @@ class PageState extends StatefulWidget {
 class _PageStateState extends State<PageState> {
   late List<Widget> pages;
   int curentIndex = 1;
+
   @override
   void initState() {
     super.initState();
-    pages = const [FavoritePage(),HomePage()];
+   
+    pages = const [FavoritePage(),HomePage(),ProfilePage()];
   }
+
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: curentIndex,
@@ -28,6 +37,8 @@ class _PageStateState extends State<PageState> {
           BottomNavigationBarItem(icon: Icon(Icons.favorite),label: ""),
 
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person),label: ""),
+
 
         ],
         onTap: (newIndex) {
@@ -39,6 +50,6 @@ class _PageStateState extends State<PageState> {
         },
       ),
       body: pages[curentIndex],
-    );
+    );}
   }
-}
+

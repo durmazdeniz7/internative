@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inter_native/entities/blog.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 
 class ArticleDetail extends StatefulWidget {
@@ -36,7 +37,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
           ),
           SliverList(delegate: SliverChildListDelegate([
             Text(widget.blog.title),
-            Text(widget.blog.content)
+Html(data: widget.blog.content)
           ]))
         ],
       ),
