@@ -4,6 +4,7 @@ import 'package:inter_native/entities/sign_up_response.dart';
 import 'package:inter_native/repo/sign_up_dao.dart';
 import 'package:inter_native/views/login_page.dart';
 import 'package:inter_native/views/page_state.dart';
+import 'package:inter_native/widgets/my_button.dart';
 
 class RegsiterPage extends StatefulWidget {
   const RegsiterPage({Key? key}) : super(key: key);
@@ -100,7 +101,7 @@ class _RegsiterPageState extends State<RegsiterPage> {
                         builder: (context) => const PageState()));
                   }
                 },
-                child: myButtons(Colors.grey.shade900, "Register", true)),
+                child: MyButton(color: Colors.grey.shade900, text: "Register",colorControl: true)),
             GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(
@@ -108,44 +109,12 @@ class _RegsiterPageState extends State<RegsiterPage> {
                       MaterialPageRoute(
                           builder: (context) => const LoginPage()));
                 },
-                child: myButtons(Colors.white, "Login", false)),
+                child :const MyButton(color:Colors.white, text: "Login", colorControl: false)),
           ],
         ),
       ),
     );
   }
 
-  Padding myButtons(Color color, String text, bool colorControl) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Container(
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 1),
-            color: color,
-            borderRadius: BorderRadius.circular(20)),
-        height: 50,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Icon(
-                Icons.login_outlined,
-                size: 30,
-                color: colorControl ? Colors.white : Colors.black,
-              ),
-            ),
-            const SizedBox(
-              width: 140,
-            ),
-            Text(
-              text,
-              style: TextStyle(
-                  color: colorControl ? Colors.white : Colors.black,
-                  fontSize: 20),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+
 }

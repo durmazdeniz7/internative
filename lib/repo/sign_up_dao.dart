@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:inter_native/entities/sign_up.dart';
 import 'package:inter_native/entities/sign_up_response.dart';
 
 class SignUpDao {

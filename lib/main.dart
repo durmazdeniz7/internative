@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inter_native/cubit/blog_cubit.dart';
 import 'package:inter_native/cubit/cateogry_cubit.dart';
 import 'package:inter_native/cubit/sign_up_cubit.dart';
-import 'package:inter_native/views/page_state.dart';
+import 'package:inter_native/views/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.grey,
         ),
-        home: const PageState(),
+        home: const LoginPage(),
       ),
     );
   }
